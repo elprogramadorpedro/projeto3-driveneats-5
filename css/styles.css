@@ -29,6 +29,7 @@ header h3{
 
 main{
     margin-top: 123px;
+    margin-bottom: 108px;
     margin-left: 19px;
     font-size: 26px
 }
@@ -63,4 +64,28 @@ main h1{
     color: #A6A6A6;
     font-weight: 300;
     margin-bottom: 12px;
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    height: 92px;
+    background-color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid #CBCBCB;
+}
+
+footer .finalizar-pedido{
+    background-color: #CBCBCB;
+    color: #FFFFFF;
+    font-size: 20px;
+    width: 364px;
+    height: 61px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
 }
