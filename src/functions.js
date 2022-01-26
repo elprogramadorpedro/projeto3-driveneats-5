@@ -3,7 +3,7 @@ const  allItens = document.getElementsByClassName("item");
 
 //usado pra verificar quais itens ja foram selecionados
 const selectedItens = [false,false,false]
-
+let finishOrderAvailable = false;
 
 //deleseciona todas as outras opções quando um item eh selecionado
 function deselectOtherItens(itens){
@@ -33,9 +33,10 @@ function selectItem(number, option){
 function finishOrderHandler(number){
     selectedItens[number] = true;
     
-    if(selectedItens.every(item => item)){
+    if(selectedItens.every(itemIsSelected => itemIsSelected)){
         const finishButton = document.getElementsByClassName("finalizar-pedido");
         finishButton[0].style.background = "#32B72F";
         finishButton[0].textContent = "Fechar pedido";
+        finishOrderAvailable = true;
     }
 }
