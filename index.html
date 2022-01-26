@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/styles.css">
     <title>🍔 DrivenEats</title>
+    <link rel="icon" href="data:,"> 
 </head>
 <body>
     
@@ -29,26 +30,29 @@
     <main>
         <h1>Primeiro, seu prato</h1>
         <div class="item">
-            <div class="item__opcao">
+            <div onclick="selectItem(0,0)" class="item__opcao">
                 <img src="media/frango.png" alt="frango">
                 <h1>Frango Yin Yang</h1>
                 <h3>Um pouco de batata, um pouco de salada</h3>
                 
                 <h2>R$ 14,90</h2>
             </div>
-            <div class="item__opcao">
+            <div onclick="selectItem(0,1)" class="item__opcao">
                 <img src="media/frango.png" alt="frango">
                 <h1>Frango Yin Yang</h1>
                 <h3>Um pouco de batata, um pouco de salada</h3>
                 <h2>R$ 14,90</h2>
             </div>
-            <div class="item__opcao">
+            <div onclick="selectItem(0,2)" class="item__opcao">
                 <img src="media/frango.png" alt="frango">
                 <h1>Frango Yin Yang</h1>
                 <h3>Um pouco de batata, um pouco de salada</h3>
                 <h2>R$ 14,90</h2>
             </div>
+            <ion-icon onclick="scrollItemLeft(0)" name="chevron-back-circle"></ion-icon>
+            <ion-icon onclick="scrollItemRight(0)" name="chevron-forward-circle"></ion-icon>
         </div>
+        
 
         <h1>Agora, sua bebida</h1>
         <div class="item">
@@ -98,10 +102,13 @@
     </main>
 
     <footer>
-        <div class="finalizar-pedido">
-            <p>Selecione os 3 itens <br> para finalizar o pedido</p>
-        </div>
+        <button class="finalizar-pedido">
+            Selecione os 3 itens <br> para finalizar o pedido
+        </button>
     </footer>
 
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="src/functions.js"></script>
 </body>
 </html>
