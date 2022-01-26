@@ -29,79 +29,77 @@
     <!--conteudo principal-->
     <main>
         <h1>Primeiro, seu prato</h1>
-        <div class="item">
-            <div onclick="selectItem(0,0)" class="item__opcao">
+        <div class="item" data-identifier="dishes">
+            <div class="item__opcao" data-identifier="food-option" onclick="selectItem(0,0)">
                 <img src="media/frango.png" alt="frango">
-                <h1>Frango Yin Yang</h1>
+                <h1 data-identifier="food-title">Frango Yin Yang</h1>
                 <h3>Um pouco de batata, um pouco de salada</h3>
-                <h2>R$ 14,90</h2>
+                <h2 data-identifier="food-price">R$ 14,90</h2>
                 <ion-icon name="checkmark-circle"></ion-icon>
             </div>
-            <div onclick="selectItem(0,1)" class="item__opcao">
+            <div class="item__opcao" data-identifier="food-option" onclick="selectItem(0,1)">
                 <img src="media/frango.png" alt="frango">
-                <h1>Frango Yin Yang</h1>
+                <h1 data-identifier="food-title">Frango Yin Yang</h1>
                 <h3>Um pouco de batata, um pouco de salada</h3>
-                <h2>R$ 14,90</h2>
+                <h2 data-identifier="food-price">R$ 14,90</h2>
                 <ion-icon name="checkmark-circle"></ion-icon>
             </div>
-            <div onclick="selectItem(0,2)" class="item__opcao">
+            <div class="item__opcao" data-identifier="food-option" onclick="selectItem(0,2)">
                 <img src="media/frango.png" alt="frango">
-                <h1>Frango Yin Yang</h1>
+                <h1 data-identifier="food-title">Frango Yin Yang</h1>
                 <h3>Um pouco de batata, um pouco de salada</h3>
-                <h2>R$ 14,90</h2>
+                <h2 data-identifier="food-price">R$ 14,90</h2>
                 <ion-icon name="checkmark-circle"></ion-icon>
             </div>
-            <ion-icon onclick="scrollItemLeft(0)" name="chevron-back-circle"></ion-icon>
-            <ion-icon onclick="scrollItemRight(0)" name="chevron-forward-circle"></ion-icon>
         </div>
         
 
         <h1>Agora, sua bebida</h1>
-        <div class="item">
-            <div onclick="selectItem(1,0)" class="item__opcao">
+        <div class="item" data-identifier="drinks">
+            <div class="item__opcao" data-identifier="food-option" onclick="selectItem(1,0)">
                 <img src="media/coquinha-gelada.png" alt="coquinha-gelada">
-                <h1>Coquinha Gelada</h1>
+                <h1 data-identifier="food-title">Coquinha Gelada</h1>
                 <h3>Lata 350ml</h3>
-                <h2>R$ 4,90</h2>
+                <h2 data-identifier="food-price">R$ 4,90</h2>
                 <ion-icon name="checkmark-circle"></ion-icon>
             </div>
-            <div onclick="selectItem(1,1)" class="item__opcao">
+            <div class="item__opcao" data-identifier="food-option" onclick="selectItem(1,1)">
                 <img src="media/coquinha-gelada.png" alt="coquinha-gelada">
-                <h1>Coquinha Gelada</h1>
+                <h1 data-identifier="food-title">Coquinha Gelada</h1>
                 <h3>Lata 350ml</h3>
-                <h2>R$ 4,90</h2>
+                <h2 data-identifier="food-price">R$ 4,90</h2>
                 <ion-icon name="checkmark-circle"></ion-icon>
             </div>
-            <div onclick="selectItem(1,2)" class="item__opcao">
+            <div class="item__opcao" data-identifier="food-option" onclick="selectItem(1,2)">
                 <img src="media/coquinha-gelada.png" alt="coquinha-gelada">
-                <h1>Coquinha Gelada</h1>
+                <h1 data-identifier="food-title">Coquinha Gelada</h1>
                 <h3>Lata 350ml</h3>
-                <h2>R$ 4,90</h2>
+                <h2 data-identifier="food-price">R$ 4,90</h2>
                 <ion-icon name="checkmark-circle"></ion-icon>
             </div>
         </div>
 
         <h1>Por fim, sua sobremesa</h1>
-        <div class="item">
-            <div onclick="selectItem(2,0)" class="item__opcao">
+        <div class="item" data-identifier="desserts">
+            <div class="item__opcao" data-identifier="food-option" onclick="selectItem(2,0)">
                 <img src="media/pudim.png" alt="pudim">
-                <h1>Pudim</h1>
+                <h1 data-identifier="food-title">Pudim</h1>
                 <h3>Apenas pudim</h3>
-                <h2>R$ 7,90</h2>
+                <h2 data-identifier="food-price">R$ 7,90</h2>
                 <ion-icon name="checkmark-circle"></ion-icon>
             </div>
-            <div onclick="selectItem(2,1)" class="item__opcao">
+            <div class="item__opcao" data-identifier="food-option" onclick="selectItem(2,1)" >
                 <img src="media/pudim.png" alt="pudim">
-                <h1>Pudim</h1>
+                <h1 data-identifier="food-title">Pudim</h1>
                 <h3>Apenas pudim</h3>
-                <h2>R$ 7,90</h2>
+                <h2 data-identifier="food-price">R$ 7,90</h2>
                 <ion-icon name="checkmark-circle"></ion-icon>
             </div>
-            <div onclick="selectItem(2,2)" class="item__opcao">
+            <div class="item__opcao" data-identifier="food-option" onclick="selectItem(2,2)">
                 <img src="media/pudim.png" alt="pudim">
-                <h1>Pudim</h1>
+                <h1 data-identifier="food-title">Pudim</h1>
                 <h3>Apenas pudim</h3>
-                <h2>R$ 7,90</h2>
+                <h2 data-identifier="food-price">R$ 7,90</h2>
                 <ion-icon name="checkmark-circle"></ion-icon>
             </div>
         </div>

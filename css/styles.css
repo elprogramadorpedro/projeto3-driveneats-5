@@ -46,24 +46,6 @@ main h1{
     overflow: hidden;
 }
 
-.item ion-icon{
-    font-size: 30px;
-    color: gray;
-}
-
-
-.item > ion-icon:nth-of-type(1){
-    position: absolute;
-    left: 5%;
-    bottom: 53%;
-}
-
-.item > ion-icon:nth-of-type(2){
-    position: absolute;
-    right: 5%;
-    bottom: 53%;
-}
-
 .item__opcao{
     width: 172px;
     height: 100%;

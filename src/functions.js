@@ -5,26 +5,6 @@ const  allItens = document.getElementsByClassName("item");
 const selectedItens = [false,false,false]
 
 
-function scrollItemRight(number){
-    
-    const item = allItens[number];
-    
-    item.scrollBy({
-        left: 150,
-        behavior: "smooth"
-    });
-
-}
-
-function scrollItemLeft(number){
-    const item = allItens[number];
-    
-    item.scrollBy({
-        left: -150,
-        behavior: "smooth"
-    });
-}
-
 //deleseciona todas as outras opções quando um item eh selecionado
 function deselectOtherItens(itens){
     for(let item of itens){
