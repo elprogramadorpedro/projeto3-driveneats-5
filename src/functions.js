@@ -4,16 +4,18 @@ const  allItens = document.getElementsByClassName("item");
 //data-identifiers
 const DISH = "dishes"
 const DRINK = "drinks"
-const DESSERT = "deserts"
+const DESSERT = "desserts"
 
 //usado pra verificar quais itens ja foram selecionados
 const selectedItens = new Array(undefined,undefined,undefined);
 let finishOrderAvailable = false;
 
-function getIndex(dataIdentifier){
-    if(dataIdentifier == DISH) return 0;
-    else if(dataIdentifier == DRINK) return 1;
-    else    return 2;
+function getIndex(dataIdentifier){ 
+    switch(dataIdentifier){
+        case DISH: return 0;
+        case DRINK: return 1;
+        case DESSERT: return 2;
+    }
 }
 
 //deleseciona a ultima opcao selectionada no prato(dish) atual
@@ -21,7 +23,7 @@ function getIndex(dataIdentifier){
 function deselectOtherItem(index){
     const selectedItem = selectedItens[index];
     if(selectedItem != undefined){
-        selectedItem.style.border = "none";
+        selectedItem.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.25)";
         const selectIcon = selectedItem.querySelector("ion-icon");
         selectIcon.style.display = "none";
     }
@@ -31,13 +33,15 @@ function deselectOtherItem(index){
 //chama o finishOrderHandler pra verificar se o pedido pode ser finalizado
 function selectItem(item){
     const selectIcon = item.querySelector("ion-icon");
-    
+
     //adiciona borda verde e revela o icone na opcao selecionada 
     selectIcon.style.display = "block"
-    item.style.border = "5px solid #32B72F";
+    item.style.boxShadow = "inset 0 0 0 5px #32B72F";
 
     const index = getIndex(item.parentElement.getAttribute("data-identifier"));  
-    deselectOtherItem(index);  
+    if(selectedItens[index] != item){
+        deselectOtherItem(index);
+    }     
     selectedItens[index] = item;
     finishOrderHandler();
 }
