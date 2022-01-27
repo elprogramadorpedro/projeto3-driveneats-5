@@ -110,3 +110,71 @@ footer .finalizar-pedido{
     padding-left: 70px;
     padding-right: 70px;
 }
+
+div.background-confirmacao{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.9);
+    position: fixed;
+    top: 0;
+    z-index: 3;
+    display: none; 
+    justify-content: center;
+    align-items: center;
+}
+
+div.tela-confirmacao{
+    width: 377px;
+    height: 353px;
+    background-color:#50D074;
+    border-radius: 9px;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.25));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+}
+
+.tela-confirmacao h2{
+    font-weight: 700;
+    font-size: 22px;
+    margin-bottom: 28px;
+}
+
+.tela-confirmacao .informacao-pedido{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.informacao-pedido h3{
+    font-size: 22px;
+    margin-bottom: 13px;
+}
+
+.tela-confirmacao :nth-child(5){
+    font-weight: 700;
+    margin-bottom: 24px;
+}
+
+#botao-confirmar{
+    color: #50D074;
+    background-color: white;
+    width: 329px;
+    height: 52px;
+    border-radius: 100px;
+    font-size: 22px;
+    font-weight: 700;
+    border: none;
+}
+
+.tela-confirmacao button{
+    color: white;
+    background-color: #50D074;
+    width: 333px;
+    height: 52px;
+    border: none;
+    font-size: 20px;
+    font-weight: 700;
+}

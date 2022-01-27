@@ -45,3 +45,61 @@ function finishOrderHandler(){
         finishOrderAvailable = true;
     }
 }
+
+//Calcula o preco total. Atualiza as informacoes sobre o pedido 
+//nos campos de texto das classes informacao-pedido. 
+//Muda o display da tela de confirmacao pra ela aparecer
+function abrirTelaConfirmacao(){
+    if(finishOrderAvailable){
+        const orderInfo = document.getElementsByClassName("informacao-pedido");
+        const itemNames=[];
+
+        let precoTotal = 0;
+        for(let i = 0; i<3;i++){
+            const dishes = allItens[i].getElementsByClassName("item__opcao");;
+            const selectedOption = dishes[selectedItens[i]];
+            const itemName = selectedOption.getElementsByTagName("h1")
+            const itemPrice = selectedOption.getElementsByTagName("h2")
+
+
+            const itemInfo = orderInfo[i].getElementsByTagName("h3");
+            itemInfo[0].textContent = itemName[0].textContent;
+            itemNames.push(itemName[0].textContent);
+            let price = itemPrice[0].textContent.replace("R$ ", "");
+            itemInfo[1].textContent = price;
+            price = price.replace(",","."); //troca , por . pra poder fazer o parse
+            precoTotal += parseFloat(price);
+        }   
+
+        const precoFinal = document.getElementById("preco-final");
+        const precoFinalString = precoTotal.toFixed(2).toString().replace('.',',');
+        precoFinal.textContent = "R$ "+precoFinalString;
+        
+        const telaConfirmacao = document.getElementsByClassName("background-confirmacao");
+        telaConfirmacao[0].style.display="flex";
+
+        const confirmButton = document.getElementById("botao-confirmar");
+        confirmButton.addEventListener("click", function(){
+            redirectToWhatsApp(itemNames, precoTotal.toFixed(2));
+        });   
+    }
+}
+
+//funcao do botao 'cancelar' na tela de confirmacao
+function cancelarPedido(){
+    const telaConfirmacao = document.getElementsByClassName("background-confirmacao");
+    telaConfirmacao[0].style.display="none";
+}
+
+function redirectToWhatsApp(itemNames, precoFinal){
+    const message = "Olá, gostaria de fazer o pedido:"
+    +"\n - Prato: "+itemNames[0]
+    +"\n - Bebida: "+itemNames[1]
+    +"\n - Sobremesa: "+itemNames[2]
+    +"\nTotal: R$ "+precoFinal;
+
+    const url = "https://wa.me/5521999521936?text="
+    +encodeURIComponent(message)
+
+    window.open(url, "_blank")
+}
