@@ -1,42 +1,39 @@
 //possui um array referenciando cada linha de itens(prato,bebida,sobremesa)
-const  allItens = document.getElementsByClassName("item");
+const  allDishes = document.getElementsByClassName("item");
 
 //usado pra verificar quais itens ja foram selecionados
-const selectedItens = [undefined,undefined,undefined]
+const selectedItens = new Array(undefined,undefined,undefined);
 let finishOrderAvailable = false;
 
 //deleseciona a ultima opcao selectionada no prato(dish) atual
-function deselectOtherItem(itens, dish){
-    if(selectedItens[dish] != undefined){
-        const item = itens[selectedItens[dish]];
-
-        //remove a borda verde e icone do item
-        item.style.border = "none";
-        const selectIcon = item.getElementsByTagName("ion-icon");
-        selectIcon[0].style.display = "none";
-    }
-    
+//remove a borda verde e icone do item
+function deselectOtherItem(item){
+    item.style.border = "none";
+    const selectIcon = item.querySelector("ion-icon");
+    selectIcon.style.display = "none";
 }
 
 //seleciona uma opcao, chama deselectItem() pra deselecionar a ultima opcao desse prato
 //chama o finishOrderHandler pra verificar se o pedido pode ser finalizado
 function selectItem(dish, selectedOption){
-    const itens = allItens[dish].getElementsByClassName("item__opcao");
+    const itens = allDishes[dish].getElementsByClassName("item__opcao");
 
     const item = itens[selectedOption];
-    const selectIcon = item.getElementsByTagName("ion-icon");
+    const selectIcon = item.querySelector("ion-icon");
     
     //adiciona borda verde e revela o icone na opcao selecionada 
-    selectIcon[0].style.display = "block"
+    selectIcon.style.display = "block"
     item.style.border = "5px solid #32B72F";
 
-    deselectOtherItem(itens, dish);
+    //se alguma opcao desse tipo ja foi selecionada, chama o delectOtherItem
+    if(selectedItens[dish] != undefined)
+        deselectOtherItem(itens[selectedItens[dish]]);
+        
     selectedItens[dish] = selectedOption;
     finishOrderHandler();
 }
 
-//se uma opcao em cada item foi selecionado
-//modifica o botao de finalizar pedido
+//se uma opcao em cada item foi selecionado modifica o botao de finalizar pedido
 function finishOrderHandler(){
     if(selectedItens.every(item => item != undefined)){
         const finishButton = document.getElementsByClassName("finalizar-pedido");
@@ -54,29 +51,28 @@ function abrirTelaConfirmacao(){
         const orderInfo = document.getElementsByClassName("informacao-pedido");
         const itemNames=[];
 
+        //pega o nome e preco de todos os itens selecionados
         let precoTotal = 0;
-        for(let i = 0; i<3;i++){
-            const dishes = allItens[i].getElementsByClassName("item__opcao");;
+        for(let i = 0; i<selectedItens.length;i++){
+            const dishes = allDishes[i].getElementsByClassName("item__opcao");;
             const selectedOption = dishes[selectedItens[i]];
-            const itemName = selectedOption.getElementsByTagName("h1")
-            const itemPrice = selectedOption.getElementsByTagName("h2")
-
+            const itemName = selectedOption.querySelector("h1")
+            const itemPrice = selectedOption.querySelector("h2")
 
             const itemInfo = orderInfo[i].getElementsByTagName("h3");
-            itemInfo[0].textContent = itemName[0].textContent;
-            itemNames.push(itemName[0].textContent);
-            let price = itemPrice[0].textContent.replace("R$ ", "");
-            itemInfo[1].textContent = price;
-            price = price.replace(",","."); //troca , por . pra poder fazer o parse
-            precoTotal += parseFloat(price);
+            itemInfo[0].textContent = itemName.textContent;
+            itemInfo[1].textContent = itemPrice.textContent.replace("R$ ", "");
+            itemNames.push(itemName.textContent);
+           
+            precoTotal += parseFloat(itemInfo[1].textContent.replace(",","."));
         }   
 
-        const precoFinal = document.getElementById("preco-final");
+        const precoFinalElement = document.getElementById("preco-final");
         const precoFinalString = precoTotal.toFixed(2).toString().replace('.',',');
-        precoFinal.textContent = "R$ "+precoFinalString;
+        precoFinalElement.textContent = "R$ "+precoFinalString;
         
-        const telaConfirmacao = document.getElementsByClassName("background-confirmacao");
-        telaConfirmacao[0].style.display="flex";
+        const telaConfirmacao = document.getElementById("background-confirmacao");
+        telaConfirmacao.style.display="flex";
 
         const confirmButton = document.getElementById("botao-confirmar");
         confirmButton.addEventListener("click", function(){
@@ -87,8 +83,8 @@ function abrirTelaConfirmacao(){
 
 //funcao do botao 'cancelar' na tela de confirmacao
 function cancelarPedido(){
-    const telaConfirmacao = document.getElementsByClassName("background-confirmacao");
-    telaConfirmacao[0].style.display="none";
+    const telaConfirmacao = document.getElementById("background-confirmacao");
+    telaConfirmacao.style.display="none";
 }
 
 function redirectToWhatsApp(itemNames, precoFinal){
