@@ -52,6 +52,7 @@ function finishOrderHandler(){
         const finishButton = document.getElementById("finalizar-pedido");
         finishButton.style.background = "#32B72F";
         finishButton.textContent = "Fechar pedido";
+        finishButton.classList.add("item-clicavel");
         finishOrderAvailable = true;
     }
 }
