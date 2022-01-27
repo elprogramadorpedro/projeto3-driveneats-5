@@ -106,14 +106,17 @@ function cancelarPedido(){
 }
 
 function redirectToWhatsApp(itemNames, precoFinal, nome, endereco){
-    const message = "Olá, gostaria de fazer o pedido:"
+    let message = "Olá, gostaria de fazer o pedido:"
     +"\n - Prato: "+itemNames[0]
     +"\n - Bebida: "+itemNames[1]
     +"\n - Sobremesa: "+itemNames[2]
-    +"\nTotal: R$ "+precoFinal
-    +"\n"
-    +"\nNome: "+nome
-    +"\nEndereço: "+endereco;
+    +"\nTotal: R$ "+precoFinal;
+
+    if(nome != "" || endereco != ""){
+        message+="\n";
+        if(nome != "") message += "\nNome: "+nome;
+        if(endereco != "") message += "\nEndereço: "+endereco;
+    }
 
     const url = "https://wa.me/5521999521936?text="
     +encodeURIComponent(message)
