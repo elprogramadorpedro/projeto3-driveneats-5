@@ -61,6 +61,10 @@ function finishOrderHandler(){
 //Muda o display da tela de confirmacao pra ela aparecer
 function abrirTelaConfirmacao(){
     if(finishOrderAvailable){
+
+        const nome = prompt("Qual seu nome? 🤔")
+        const endereco = prompt("Diga seu endereço 👀")
+
         const orderInfo = document.getElementsByClassName("informacao-pedido");
         const itemNames=[];
 
@@ -89,7 +93,7 @@ function abrirTelaConfirmacao(){
 
         const confirmButton = document.getElementById("botao-confirmar");
         confirmButton.addEventListener("click", function(){
-            redirectToWhatsApp(itemNames, precoTotal.toFixed(2));
+            redirectToWhatsApp(itemNames, precoTotal.toFixed(2), nome, endereco);
         });   
     }
 }
@@ -100,12 +104,15 @@ function cancelarPedido(){
     telaConfirmacao.style.display="none";
 }
 
-function redirectToWhatsApp(itemNames, precoFinal){
+function redirectToWhatsApp(itemNames, precoFinal, nome, endereco){
     const message = "Olá, gostaria de fazer o pedido:"
     +"\n - Prato: "+itemNames[0]
     +"\n - Bebida: "+itemNames[1]
     +"\n - Sobremesa: "+itemNames[2]
-    +"\nTotal: R$ "+precoFinal;
+    +"\nTotal: R$ "+precoFinal
+    +"\n"
+    +"\nNome: "+nome
+    +"\nEndereço: "+endereco;
 
     const url = "https://wa.me/5521999521936?text="
     +encodeURIComponent(message)
