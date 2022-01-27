@@ -1,44 +1,53 @@
 //possui um array referenciando cada linha de itens(prato,bebida,sobremesa)
-const  allDishes = document.getElementsByClassName("item");
+const  allItens = document.getElementsByClassName("item");
+
+//data-identifiers
+const DISH = "dishes"
+const DRINK = "drinks"
+const DESSERT = "deserts"
 
 //usado pra verificar quais itens ja foram selecionados
 const selectedItens = new Array(undefined,undefined,undefined);
 let finishOrderAvailable = false;
 
+function getIndex(dataIdentifier){
+    if(dataIdentifier == DISH) return 0;
+    else if(dataIdentifier == DRINK) return 1;
+    else    return 2;
+}
+
 //deleseciona a ultima opcao selectionada no prato(dish) atual
 //remove a borda verde e icone do item
-function deselectOtherItem(item){
-    item.style.border = "none";
-    const selectIcon = item.querySelector("ion-icon");
-    selectIcon.style.display = "none";
+function deselectOtherItem(index){
+    const selectedItem = selectedItens[index];
+    if(selectedItem != undefined){
+        selectedItem.style.border = "none";
+        const selectIcon = selectedItem.querySelector("ion-icon");
+        selectIcon.style.display = "none";
+    }
 }
 
 //seleciona uma opcao, chama deselectItem() pra deselecionar a ultima opcao desse prato
 //chama o finishOrderHandler pra verificar se o pedido pode ser finalizado
-function selectItem(dish, selectedOption){
-    const itens = allDishes[dish].getElementsByClassName("item__opcao");
-
-    const item = itens[selectedOption];
+function selectItem(item){
     const selectIcon = item.querySelector("ion-icon");
     
     //adiciona borda verde e revela o icone na opcao selecionada 
     selectIcon.style.display = "block"
     item.style.border = "5px solid #32B72F";
 
-    //se alguma opcao desse tipo ja foi selecionada, chama o delectOtherItem
-    if(selectedItens[dish] != undefined)
-        deselectOtherItem(itens[selectedItens[dish]]);
-        
-    selectedItens[dish] = selectedOption;
+    const index = getIndex(item.parentElement.getAttribute("data-identifier"));  
+    deselectOtherItem(index);  
+    selectedItens[index] = item;
     finishOrderHandler();
 }
 
 //se uma opcao em cada item foi selecionado modifica o botao de finalizar pedido
 function finishOrderHandler(){
     if(selectedItens.every(item => item != undefined)){
-        const finishButton = document.getElementsByClassName("finalizar-pedido");
-        finishButton[0].style.background = "#32B72F";
-        finishButton[0].textContent = "Fechar pedido";
+        const finishButton = document.getElementById("finalizar-pedido");
+        finishButton.style.background = "#32B72F";
+        finishButton.textContent = "Fechar pedido";
         finishOrderAvailable = true;
     }
 }
@@ -54,10 +63,10 @@ function abrirTelaConfirmacao(){
         //pega o nome e preco de todos os itens selecionados
         let precoTotal = 0;
         for(let i = 0; i<selectedItens.length;i++){
-            const dishes = allDishes[i].getElementsByClassName("item__opcao");;
-            const selectedOption = dishes[selectedItens[i]];
-            const itemName = selectedOption.querySelector("h1")
-            const itemPrice = selectedOption.querySelector("h2")
+            const selectedOption = selectedItens[i];
+            
+            const itemName = selectedOption.querySelector("h1");
+            const itemPrice = selectedOption.querySelector("h2");
 
             const itemInfo = orderInfo[i].getElementsByTagName("h3");
             itemInfo[0].textContent = itemName.textContent;

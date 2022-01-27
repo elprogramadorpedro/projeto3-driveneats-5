@@ -46,6 +46,7 @@ main h1{
     overflow-x: scroll;
 }
 
+
 .item__opcao{
     width: 172px;
     height: 100%;
@@ -97,7 +98,7 @@ footer{
     border-top: 1px solid #CBCBCB;
 }
 
-footer .finalizar-pedido{
+#finalizar-pedido{
     background-color: #CBCBCB;
     color: #FFFFFF;
     font-size: 20px;
