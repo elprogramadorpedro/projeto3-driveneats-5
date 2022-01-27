@@ -45,6 +45,8 @@ main h1{
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     overflow-x: scroll;
+    padding-left: 3px;
+    padding-bottom: 3px;
 }
 
 
@@ -85,6 +87,11 @@ main h1{
 .item__opcao img{
     width: 144px;
     height: 87px;
+}
+
+.item-clicavel:hover{
+    transform: scale(1.02);
+    cursor: pointer;
 }
 
 footer{
