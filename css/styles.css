@@ -75,23 +75,31 @@ main h1{
     margin-bottom: 12px;
 }
 
-.item__opcao ion-icon {
-    font-size: 24px;
-    color: #32B72F;
-    position: absolute;
-    bottom: 5px;
-    right: 5px;
-    display: none;
-}
-
 .item__opcao img{
     width: 144px;
     height: 87px;
 }
 
+.item__opcao ion-icon{
+    display: none;
+}
+
 .item-clicavel:hover{
     transform: scale(1.02);
     cursor: pointer;
+}
+
+.item-selecionado{
+    box-shadow: inset 0 0 0 5px #32B72F;
+}
+
+.item-selecionado ion-icon {
+    font-size: 24px;
+    color: #32B72F;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    display: block;
 }
 
 footer{
@@ -119,6 +127,10 @@ footer{
     border:none;
     padding-left: 70px;
     padding-right: 70px;
+}
+
+#finalizar-pedido.pedido-pronto{
+    background-color: #32B72F;
 }
 
 #background-confirmacao{
