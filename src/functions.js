@@ -1,8 +1,9 @@
-//usado pra verificar quais itens ja foram selecionados
+//usado pra verificar quais itens ja foram selecionados [dishElement, drinkElement, dessertElement]
 const selectedItens = new Array(undefined, undefined, undefined);
 let finishOrderAvailable = false;
 
-//o index referencia a posicao no array selectedItens, indicando qual o tipo do item: prato/drink/sobremesa 
+//o index referencia a posicao no array selectedItens, indicando qual o tipo do item:
+// [0:dish, 1:drink, 2:dessert:2] 
 function getIndex(dataIdentifier) {
     switch (dataIdentifier) {
         case "dishes": return 0;
@@ -15,17 +16,16 @@ function getIndex(dataIdentifier) {
 function selectItem(itemSelecionado) {
     const index = getIndex(itemSelecionado.parentElement.getAttribute("data-identifier"));
 
-    if (selectedItens[index] == itemSelecionado) {
-        selectedItens[index] = undefined;
-    } else {
+    if(itemSelecionado.classList.toggle("item-selecionado")){
         if (selectedItens[index] != undefined) {
             selectedItens[index].classList.toggle("item-selecionado");
         }
         selectedItens[index] = itemSelecionado;
+    }else{
+        selectedItens[index] = undefined;
     }
 
-    //adiciona/remove borda verde e revela o icone na opcao selecionada 
-    itemSelecionado.classList.toggle("item-selecionado");
+    //vefifica botao de fechar pedido
     finishOrderHandler();
 }
 
@@ -75,8 +75,7 @@ function abrirTelaConfirmacao() {
         }
 
         const precoFinalElement = document.getElementById("preco-final");
-        const precoFinalString = precoTotal.toFixed(2).toString().replace('.', ',');
-        precoFinalElement.textContent = "R$ " + precoFinalString;
+        precoFinalElement.textContent = "R$ " + precoTotal.toFixed(2).toString().replace('.', ',');
 
         const telaConfirmacao = document.getElementById("background-confirmacao");
         telaConfirmacao.style.display = "flex";

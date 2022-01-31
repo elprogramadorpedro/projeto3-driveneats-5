@@ -52,7 +52,6 @@ main h1{
 
 .item__opcao{
     width: 172px;
-    height: 100%;
     background-color: #FFFFFF;
     border-radius: 9px;
     padding: 18px 14px 13px 14px;
@@ -75,9 +74,13 @@ main h1{
     margin-bottom: 12px;
 }
 
-.item__opcao img{
+.item__opcao > img{
+    display: block;
+    object-fit: cover;
+    object-position: center;
     width: 144px;
     height: 87px;
+    border-radius: 3px;
 }
 
 .item__opcao ion-icon{
